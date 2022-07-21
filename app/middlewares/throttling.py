@@ -27,7 +27,7 @@ class ThrottlingMiddleware(BaseMiddleware):
         throttling_key = throttling_flags['throttling_key']
         throttle_time = throttling_flags['throttle_time']
 
-        if not f'{throttling_key}_{throttle_time}' in self.caches:
+        if f'{throttling_key}_{throttle_time}' not in self.caches:
             self.caches[f'{throttling_key}_{throttle_time}'] = TTLCache(
                 maxsize=ThrottlingSettings.MAX_CACHE_SIZE,
                 ttl=throttle_time
