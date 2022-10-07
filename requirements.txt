@@ -1,6 +1,4 @@
 aiogram==3.0.0b5
-pyngrok==5.1.0
-ormar==0.11.2
 python-dotenv==0.20.0
 cachetools==5.2.0
 psycopg2==2.9.3

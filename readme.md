@@ -1,15 +1,16 @@
 # Шаблон для телеграм бота (магазина)
 
 
-<a href="https://github.com/badges/shields/graphs/contributors" alt="Contributors">
-        <img src="https://img.shields.io/github/contributors/badges/shields" /></a>
+<img src="https://badgen.net/badge/python/3.10+/blue" />
+<img src="https://badgen.net/badge/aiogram/3.0.0b5/orange" />
+<img src="https://badgen.net/badge/glQiwiApi/2.12/green" />
 
 
 ## Задачи:
-:white_check_mark: Хендлер на /start
-:white_check_mark: Отображение профиля
-:white_check_mark: Отображение баланса
-:white_check_mark: Прием платежей QiWi
+:white_check_mark: Хендлер на /start  
+:white_check_mark: Отображение профиля  
+:white_check_mark: Отображение баланса  
+:arrows_counterclockwise: Прием платежей QiWi  
 
 ## Get start
 
@@ -37,3 +38,5 @@
 с psycopg2: решение - psycopg2-binary и aiogram: решение - в pycharm через 
 настройки интерпритатора напрямую установить требуемую версию)
 
+## Running 
+Выполнить `python app/bot.py` из корня проекта
