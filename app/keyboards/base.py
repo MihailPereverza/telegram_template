@@ -14,10 +14,20 @@ class RegularKeyboard(ABC):
     # list of all keywords for cancel in subclasses
     cancel_list = []
 
-    @classmethod
+    @property
     @abstractmethod
-    def get(cls, *args, **kwargs) -> ReplyKeyboardMarkup:
+    def _keyboard(self) -> List[List[KeyboardButton]]:
         pass
+
+    def get(
+            self, resize_keyboard=True,
+            one_time_keyboard=False
+    ) -> ReplyKeyboardMarkup:
+        return ReplyKeyboardMarkup(
+            keyboard=self._keyboard,
+            resize_keyboard=resize_keyboard,
+            one_time_keyboard=one_time_keyboard
+        )
 
     @staticmethod
     def _create_multiple(
@@ -26,8 +36,10 @@ class RegularKeyboard(ABC):
         keys = list(map(KeyboardButton, multiple_keys))
         if len(keys) < 1 or row_width < 2:
             return keys
-        # reverse the list so, the rows that are shorter that row_width come first
-        return [keys[key : key + row_width] for key in range(0, len(keys), row_width)][
+        # reverse the list so, the rows that
+        # are shorter that row_width come first
+        return [keys[key: key + row_width]
+                for key in range(0, len(keys), row_width)][
             ::-1
         ]
 
@@ -38,13 +50,16 @@ class RegularKeyboard(ABC):
 
 
 class InlineKeyboard(ABC):
-    @classmethod
+    @property
     @abstractmethod
-    def get(*args, **kwargs) -> InlineKeyboardMarkup:
+    def _keyboard(self) -> List[List[InlineKeyboardButton]]:
         pass
 
+    def get(self) -> InlineKeyboardMarkup:
+        return InlineKeyboardMarkup(keyboard=self._keyboard)
+
     def _create_multiple(
-        self: List[Dict[str, str]], row_width: int = 3
+            self: List[Dict[str, str]], row_width: int = 3
     ) -> List[List[InlineKeyboardButton]]:
         if len(self) < 1:
             return []
@@ -55,6 +70,3 @@ class InlineKeyboard(ABC):
             ]
             for row in self
         ]
-
-
-

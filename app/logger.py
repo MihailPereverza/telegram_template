@@ -1,20 +1,27 @@
 import logging
 
-from settings import settings
+from settings.settings import settings
+
+
+log_format = u'%(filename)s:%(lineno)d #%(levelname)-8s ' \
+             u'[%(asctime)s] - %(name)s - %(message)s'
 
 
 def get_logger(name: str) -> logging.Logger:
-    formatter = logging.Formatter(fmt=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s')
+    formatter = logging.Formatter(fmt=log_format)
 
     cls_handler = logging.StreamHandler()
     cls_handler.setFormatter(formatter)
-    cls_handler.setLevel(logging.DEBUG if not settings.production else logging.WARNING)
+    cls_handler.setLevel(logging.DEBUG)
 
     file_handler = logging.FileHandler(settings.logging_file_name)
     file_handler.setFormatter(formatter)
-    file_handler.setLevel(logging.DEBUG if not settings.production else logging.INFO)
+    file_handler.setLevel(logging.DEBUG)
 
     logger = logging.getLogger(name)
+
+    if logger.handlers:
+        return logger
 
     logger.addHandler(cls_handler)
     logger.addHandler(file_handler)
