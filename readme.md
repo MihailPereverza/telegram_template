@@ -1,10 +1,10 @@
 # Шаблон для телеграм бота (магазина)
 
 
-<img src="https://badgen.net/badge/python/3.10+/blue" />
+<p><img src="https://badgen.net/badge/python/3.10+/blue" />
 <img src="https://badgen.net/badge/aiogram/3.0.0b5/orange" />
 <img src="https://badgen.net/badge/glQiwiApi/2.12/green" />
-
+</p>
 
 ## Задачи:
 :white_check_mark: Хендлер на /start  
